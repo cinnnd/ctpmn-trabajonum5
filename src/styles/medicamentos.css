@@ -1,0 +1,287 @@
+
+.med-contenedor {
+  --med-azul: #2458a6;
+  --med-verde: #158466;
+  --med-fondo: #f4f8fc;
+  --med-texto: #213247;
+
+  min-height: 100vh;
+  background: var(--med-fondo);
+  color: var(--med-texto);
+  padding: 35px 24px 60px;
+  font-family: Arial, sans-serif;
+}
+
+.med-contenedor * {
+  box-sizing: border-box;
+}
+
+.med-encabezado {
+  max-width: 1150px;
+  margin: 0 auto 24px;
+}
+
+.med-etiqueta {
+  color: var(--med-azul);
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.med-encabezado h1 {
+  font-size: clamp(27px, 4vw, 38px);
+  margin: 10px 0;
+}
+
+.med-encabezado p,
+.med-descripcion {
+  color: #52677f;
+  line-height: 1.6;
+}
+
+.med-aviso {
+  max-width: 1150px;
+  margin: 0 auto 22px;
+  padding: 14px 18px;
+  background: #fff4d8;
+  border-left: 4px solid #bd7900;
+  border-radius: 9px;
+  color: #664500;
+  line-height: 1.5;
+}
+
+.med-grid {
+  display: grid;
+  grid-template-columns: minmax(290px, 420px) minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+  max-width: 1150px;
+  margin: auto;
+}
+
+.med-panel {
+  min-width: 0;
+  background: white;
+  border: 1px solid #e1e9f1;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 6px 22px rgba(35, 63, 95, 0.05);
+}
+
+.med-panel h2 {
+  margin: 0 0 10px;
+  font-size: 22px;
+}
+
+.med-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.med-campo label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.med-campo input,
+.med-campo select {
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 13px;
+  border: 1px solid #b9cadb;
+  border-radius: 9px;
+  background: white;
+  color: #213247;
+  font: inherit;
+}
+
+.med-campo input:focus,
+.med-campo select:focus {
+  outline: 3px solid #bcd7ff;
+  border-color: var(--med-azul);
+}
+
+.med-campo [aria-invalid="true"] {
+  border-color: #c43333;
+}
+
+.med-error {
+  color: #a92323;
+  font-size: 13px;
+}
+
+.med-acciones,
+.med-tarjeta-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 23px;
+}
+
+.med-btn {
+  min-height: 42px;
+  padding: 10px 15px;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.med-btn:focus-visible {
+  outline: 3px solid #98c8ff;
+  outline-offset: 2px;
+}
+
+.med-btn-primario {
+  background: var(--med-azul);
+  color: white;
+}
+
+.med-btn-primario:hover {
+  background: #184582;
+}
+
+.med-btn-secundario {
+  background: #e9f1fa;
+  color: #174477;
+  border-color: #c8d9ed;
+}
+
+.med-btn-peligro {
+  background: #fff0f0;
+  color: #a51f2c;
+  border-color: #f0c8c8;
+}
+
+.med-lista-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.med-contador {
+  background: #e1f4eb;
+  color: #116a4c;
+  border-radius: 20px;
+  padding: 7px 11px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.med-tarjetas {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.med-tarjeta {
+  border: 1px solid #dfe8f1;
+  border-radius: 14px;
+  padding: 18px;
+  background: #fbfdff;
+}
+
+.med-tarjeta-encabezado {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.med-tarjeta h3 {
+  margin: 0;
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+
+.med-icono {
+  font-size: 25px;
+}
+
+.med-detalles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+  margin: 18px 0 0;
+}
+
+.med-detalles dt {
+  color: #52677f;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.med-detalles dd {
+  margin: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.med-vacio {
+  padding: 25px;
+  border-radius: 10px;
+  background: #f4f8fc;
+  color: #52677f;
+  text-align: center;
+}
+
+.med-mensaje-exito,
+.med-mensaje-error {
+  max-width: 1150px;
+  padding: 14px;
+  margin: 0 auto 20px;
+  border-radius: 9px;
+}
+
+.med-mensaje-exito {
+  background: #dcf5e8;
+  color: #0f6546;
+}
+
+.med-mensaje-error {
+  background: #ffeded;
+  color: #9b2222;
+}
+
+@media (max-width: 900px) {
+  .med-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .med-contenedor {
+    padding: 20px 12px;
+  }
+
+  .med-panel {
+    padding: 18px;
+  }
+
+  .med-detalles {
+    grid-template-columns: 1fr;
+  }
+
+  .med-btn {
+    flex: 1;
+  }
+}
+
+body:has(.med-contenedor) {
+  display: block;
+  margin: 0;
+  min-width: 320px;
+}
+
+#root:has(.med-contenedor) {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
