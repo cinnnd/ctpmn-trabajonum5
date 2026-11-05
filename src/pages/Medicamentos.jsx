@@ -140,26 +140,23 @@ function Medicamentos() {
   return (
     <main className="med-contenedor">
       {/* ENCABEZADO PRINCIPAL */}
-      <header className="med-encabezado">
-        <div className="med-encabezado-texto">
-          <span className="med-etiqueta">🌿 MEDICONTROL</span>
+        <header className="med-encabezado">
+            <div className="med-encabezado-texto">
+                <span className="med-etiqueta">MEDICONTROL</span>
 
-          <h1>Gestión de medicamentos</h1>
+                <h1>Gestión de medicamentos</h1>
 
-          <p>
-            Un espacio sencillo para organizar sus medicamentos
-            y consultar sus horarios.
-          </p>
-        </div>
+                <p>
+                Un espacio sencillo para organizar sus medicamentos y consultar sus horarios.
+                </p>
+            </div>
 
-        <div className="med-ilustracion" aria-hidden="true">
-          💊
-        </div>
-      </header>
+            <div className="med-ilustracion" aria-hidden="true"></div>
+        </header>
 
       {/* AVISO OBLIGATORIO DEL PROYECTO */}
       <aside className="med-aviso" role="note">
-        <span aria-hidden="true">ⓘ</span>
+        <span aria-hidden="true"></span>
 
         <p>
           <strong>Importante:</strong> MediControl es un prototipo
@@ -170,7 +167,7 @@ function Medicamentos() {
       {/* TARJETAS DE RESUMEN */}
       <section className="med-resumen" aria-label="Resumen de medicamentos">
         <div className="med-resumen-card">
-          <span>💊 Medicamentos</span>
+          <span>Medicamentos</span>
           <strong>{resumen.total}</strong>
           <small>Total registrados</small>
         </div>

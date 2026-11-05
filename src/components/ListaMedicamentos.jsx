@@ -66,7 +66,6 @@ function ListaMedicamentos({
       {/* Mensaje cuando la lista está vacía */}
       {medicamentosFiltrados.length === 0 ? (
         <div className="med-vacio">
-          <span aria-hidden="true">🌿</span>
 
           <h3>
             {medicamentos.length === 0

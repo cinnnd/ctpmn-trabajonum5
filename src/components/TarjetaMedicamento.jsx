@@ -23,9 +23,6 @@ function TarjetaMedicamento({
     <article className="med-tarjeta">
       {/* Encabezado de la tarjeta */}
       <div className="med-tarjeta-encabezado">
-        <span className="med-icono" aria-hidden="true">
-          💊
-        </span>
 
         <div className="med-tarjeta-identidad">
           <span className="med-tarjeta-etiqueta">
@@ -64,7 +61,7 @@ function TarjetaMedicamento({
           onClick={() => onEditar(medicamento)}
           aria-label={`Editar ${medicamento.nombre}`}
         >
-          ✎ Editar
+          Editar
         </button>
 
         <button
@@ -73,7 +70,7 @@ function TarjetaMedicamento({
           onClick={confirmarEliminacion}
           aria-label={`Eliminar ${medicamento.nombre}`}
         >
-          ✕ Eliminar
+          Eliminar
         </button>
       </div>
     </article>

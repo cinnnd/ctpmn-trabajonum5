@@ -1,53 +1,50 @@
 
-/*
- * MEDICONTROL - ESTILOS DE MEDICAMENTOS
- *
- * Diseño visual de la gestión de medicamentos.
- * Utiliza la paleta oficial seleccionada por el equipo.
- *
- * Incluye:
- * - Variables CSS.
- * - Flexbox y CSS Grid.
- * - Tarjetas con bordes redondeados.
- * - Estados hover y focus.
- * - Adaptación a tabletas y celulares.
- */
 
 /* ========================================
    1. PALETA DE COLORES
    ======================================== */
 
 .med-contenedor {
-  /* Colores oficiales de MediControl */
   --med-tea-green: #D7F2BA;
   --med-celadon-light: #BDE4A8;
   --med-celadon: #9CC69B;
   --med-muted-teal: #79B4A9;
   --med-dusty-olive: #676F54;
 
-  /* Colores auxiliares para legibilidad */
-  --med-fondo: #F5F9F1;
+  --med-fondo: #F5F8F2;
   --med-blanco: #FFFFFF;
-  --med-texto: #304432;
-  --med-texto-suave: #53664B;
-  --med-borde: #DCE8D5;
-  --med-error: #A52F35;
+  --med-texto: #2F4330;
+  --med-texto-suave: #5F715C;
+  --med-borde: #D9E5D3;
+  --med-error: #A54040;
 
   width: 100%;
   min-height: 100vh;
-  padding: 35px 24px 65px;
-
+  padding: 36px 24px 60px;
   background: var(--med-fondo);
   color: var(--med-texto);
-
   font-family: "Segoe UI", Arial, sans-serif;
   line-height: 1.5;
 }
 
-/* Evita errores de tamaño por padding y bordes. */
 .med-contenedor,
 .med-contenedor * {
   box-sizing: border-box;
+}
+
+/* Evita que Vite centre raro la app */
+body:has(.med-contenedor) {
+  display: block;
+  margin: 0;
+  min-width: 320px;
+}
+
+#root:has(.med-contenedor) {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
 }
 
 /* ========================================
@@ -61,75 +58,56 @@
   gap: 20px;
 
   max-width: 1150px;
-  min-height: 180px;
+  min-height: 170px;
   margin: 0 auto 22px;
-  padding: 32px 38px;
+  padding: 32px 36px;
 
-  background: linear-gradient(
-    115deg,
-    var(--med-tea-green),
-    var(--med-celadon-light),
-    var(--med-muted-teal)
-  );
+  /* QUITAMOS EL DEGRADADO */
+  background: #B9D6A5;
 
+  border: 1px solid #cfe0c6;
   border-radius: 24px;
-
-  box-shadow: 0 8px 24px rgba(68, 93, 64, 0.09);
+  box-shadow: 0 8px 24px rgba(68, 93, 64, 0.08);
 }
 
 .med-encabezado-texto {
-  max-width: 690px;
+  max-width: 760px;
 }
 
 .med-etiqueta {
   display: inline-block;
   margin-bottom: 10px;
   padding: 7px 12px;
-
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.75);
   border-radius: 30px;
-
   color: #354F38;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: 1px;
 }
 
 .med-encabezado h1 {
   margin: 0 0 12px;
-  color: #263E30;
-
-  font-size: clamp(27px, 4vw, 39px);
+  color: #243A2D;
+  font-size: clamp(34px, 4vw, 46px);
   font-weight: 800;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .med-encabezado p {
   margin: 0;
-  color: #354F38;
-  font-size: 15px;
+  color: #38503C;
+  font-size: 18px;
   line-height: 1.7;
 }
 
-/* Icono decorativo grande del encabezado. */
+/* Ocultamos el icono grande del encabezado */
 .med-ilustracion {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 108px;
-  height: 108px;
-  flex-shrink: 0;
-
-  background: rgba(255, 255, 255, 0.45);
-  border: 2px solid rgba(255, 255, 255, 0.55);
-  border-radius: 28px;
-
-  font-size: 54px;
+  display: none;
 }
 
 /* ========================================
-   3. AVISO EDUCATIVO
+   3. AVISO
    ======================================== */
 
 .med-aviso {
@@ -139,9 +117,9 @@
 
   max-width: 1150px;
   margin: 0 auto 22px;
-  padding: 15px 20px;
+  padding: 16px 20px;
 
-  background: #EAF4DF;
+  background: #EEF5E8;
   border: 1px solid #B9D6A5;
   border-left: 5px solid var(--med-dusty-olive);
   border-radius: 13px;
@@ -150,17 +128,16 @@
 }
 
 .med-aviso > span {
-  font-size: 22px;
-  line-height: 1;
+  display: none;
 }
 
 .med-aviso p {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* ========================================
-   4. PANEL DE RESUMEN
+   4. TARJETAS DE RESUMEN
    ======================================== */
 
 .med-resumen {
@@ -176,20 +153,17 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 7px;
+  gap: 8px;
 
   min-width: 0;
-  padding: 21px 22px;
+  padding: 22px 22px;
 
   background: var(--med-blanco);
   border: 1px solid var(--med-borde);
   border-radius: 17px;
 
   box-shadow: 0 5px 15px rgba(51, 72, 47, 0.04);
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .med-resumen-card:hover {
@@ -198,38 +172,34 @@
 }
 
 .med-resumen-card:first-child {
-  background: linear-gradient(
-    135deg,
-    var(--med-tea-green),
-    var(--med-celadon-light)
-  );
+  background: #cfe0c6;
 }
 
 .med-resumen-card span {
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--med-texto-suave);
 }
 
 .med-resumen-card strong {
-  font-size: 32px;
+  font-size: 42px;
   line-height: 1.2;
   font-weight: 800;
   color: var(--med-dusty-olive);
 }
 
 .med-resumen-card small {
-  font-size: 12px;
+  font-size: 15px;
   color: var(--med-texto-suave);
 }
 
 /* ========================================
-   5. DISTRIBUCIÓN DE FORMULARIO Y LISTA
+   5. FORMULARIO Y LISTA
    ======================================== */
 
 .med-grid {
   display: grid;
-  grid-template-columns: minmax(300px, 420px) minmax(0, 1fr);
+  grid-template-columns: minmax(320px, 430px) minmax(0, 1fr);
   align-items: start;
   gap: 24px;
 
@@ -237,10 +207,9 @@
   margin: 0 auto;
 }
 
-/* Tarjetas blancas principales. */
 .med-panel {
   min-width: 0;
-  padding: 27px;
+  padding: 30px;
 
   background: var(--med-blanco);
   border: 1px solid var(--med-borde);
@@ -261,37 +230,25 @@
 }
 
 .med-seccion-icono {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 52px;
-  height: 52px;
-  flex-shrink: 0;
-
-  background: var(--med-tea-green);
-  border-radius: 15px;
-
-  color: var(--med-dusty-olive);
-  font-size: 26px;
-  font-weight: bold;
+  display: none;
 }
 
 .med-panel h2 {
-  margin: 0 0 5px;
+  margin: 0 0 6px;
   color: var(--med-texto);
-  font-size: 21px;
+  font-size: 34px;
+  font-weight: 800;
 }
 
 .med-seccion-titulo p,
 .med-lista-titulo p {
   margin: 0;
   color: var(--med-texto-suave);
-  font-size: 13px;
+  font-size: 16px;
 }
 
 /* ========================================
-   7. FORMULARIO Y CAMPOS
+   7. FORMULARIO
    ======================================== */
 
 .med-campo {
@@ -302,16 +259,15 @@
 }
 
 .med-campo label {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 17px;
   color: var(--med-texto);
+  font-weight: 700;
 }
 
-/* Campos del formulario. */
 .med-campo > input,
 .med-campo > select {
   width: 100%;
-  min-height: 49px;
+  min-height: 52px;
   padding: 12px 14px;
 
   background: #FAFCF8;
@@ -320,18 +276,15 @@
 
   color: var(--med-texto);
   font-family: inherit;
-  font-size: 15px;
+  font-size: 16px;
 
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .med-campo input::placeholder {
   color: #748472;
 }
 
-/* Resaltar el campo seleccionado. */
 .med-campo input:focus,
 .med-campo select:focus {
   outline: none;
@@ -343,16 +296,14 @@
   border-color: var(--med-error);
 }
 
-/* Información debajo del campo de hora. */
 .med-ayuda {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--med-texto-suave);
 }
 
-/* Errores de validación. */
 .med-error {
   color: var(--med-error);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -368,26 +319,22 @@
 }
 
 .med-acciones {
-  margin-top: 25px;
+  margin-top: 24px;
 }
 
 .med-btn {
-  min-height: 44px;
-  padding: 11px 17px;
+  min-height: 46px;
+  padding: 11px 18px;
 
   border: 1px solid transparent;
   border-radius: 11px;
 
   font-family: inherit;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
 
   cursor: pointer;
-
-  transition:
-    background 0.2s,
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
 
 .med-btn:hover {
@@ -399,18 +346,15 @@
   outline-offset: 3px;
 }
 
-/* Botón principal de registro. */
 .med-btn-primario {
   background: var(--med-dusty-olive);
   color: white;
-  box-shadow: 0 4px 12px rgba(103, 111, 84, 0.2);
 }
 
 .med-btn-primario:hover {
   background: #4E5A3F;
 }
 
-/* Botón de edición y cancelación. */
 .med-btn-secundario {
   background: var(--med-celadon-light);
   color: #304432;
@@ -421,7 +365,6 @@
   background: var(--med-celadon);
 }
 
-/* Eliminar usa rojo suave para diferenciar el peligro. */
 .med-btn-peligro {
   background: #FBECEC;
   color: #A12E36;
@@ -433,7 +376,7 @@
 }
 
 /* ========================================
-   9. LISTADO Y BUSCADOR
+   9. LISTA Y BUSCADOR
    ======================================== */
 
 .med-lista-titulo {
@@ -446,13 +389,13 @@
 }
 
 .med-contador {
-  padding: 7px 13px;
+  padding: 9px 14px;
 
   background: var(--med-tea-green);
   border-radius: 30px;
 
   color: #39523A;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 800;
 }
 
@@ -461,7 +404,7 @@
   align-items: center;
   gap: 10px;
 
-  min-height: 49px;
+  min-height: 52px;
   padding: 0 13px;
 
   background: #FAFCF8;
@@ -475,8 +418,7 @@
 }
 
 .med-buscador span {
-  font-size: 25px;
-  color: var(--med-dusty-olive);
+  display: none;
 }
 
 .med-buscador input {
@@ -490,6 +432,7 @@
 
   color: var(--med-texto);
   font: inherit;
+  font-size: 16px;
 }
 
 /* ========================================
@@ -504,16 +447,14 @@
 }
 
 .med-tarjeta {
-  padding: 20px;
+  padding: 22px;
 
   background: linear-gradient(145deg, #FFFFFF, #F8FCF5);
   border: 1px solid var(--med-borde);
   border-left: 4px solid var(--med-muted-teal);
   border-radius: 15px;
 
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .med-tarjeta:hover {
@@ -528,18 +469,7 @@
 }
 
 .med-icono {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 49px;
-  height: 49px;
-  flex-shrink: 0;
-
-  background: var(--med-tea-green);
-  border-radius: 14px;
-
-  font-size: 24px;
+  display: none;
 }
 
 .med-tarjeta-identidad {
@@ -548,18 +478,18 @@
 
 .med-tarjeta-etiqueta {
   color: var(--med-texto-suave);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
 }
 
 .med-tarjeta h3 {
-  margin: 4px 0 0;
+  margin: 6px 0 0;
   color: var(--med-texto);
-  font-size: 18px;
+  font-size: 29px;
+  font-weight: 800;
   overflow-wrap: anywhere;
 }
 
-/* Datos: dosis, frecuencia y hora. */
 .med-detalles {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -569,24 +499,22 @@
 
 .med-detalle {
   min-width: 0;
-  padding: 11px 13px;
+  padding: 12px 14px;
 
   background: #EEF6E8;
   border-radius: 10px;
 }
 
 .med-detalle dt {
-  margin-bottom: 5px;
-
+  margin-bottom: 6px;
   color: var(--med-texto-suave);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .med-detalle dd {
   margin: 0;
-
   color: var(--med-texto);
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 700;
   overflow-wrap: anywhere;
 }
@@ -597,7 +525,7 @@
 }
 
 /* ========================================
-   11. MENSAJES Y ESTADO VACÍO
+   11. MENSAJES Y VACÍO
    ======================================== */
 
 .med-vacio {
@@ -612,18 +540,18 @@
 }
 
 .med-vacio > span {
-  font-size: 40px;
+  display: none;
 }
 
 .med-vacio h3 {
   margin: 12px 0 7px;
-  font-size: 17px;
+  font-size: 22px;
 }
 
 .med-vacio p {
   margin: 0;
   color: var(--med-texto-suave);
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .med-mensaje-exito,
@@ -633,7 +561,7 @@
   padding: 14px 18px;
 
   border-radius: 11px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -650,11 +578,10 @@
 }
 
 /* ========================================
-   12. RESPONSIVE - TABLETAS
+   12. RESPONSIVE
    ======================================== */
 
 @media (max-width: 900px) {
-  /* Formulario arriba y listado abajo. */
   .med-grid {
     grid-template-columns: 1fr;
   }
@@ -668,10 +595,6 @@
   }
 }
 
-/* ========================================
-   13. RESPONSIVE - CELULARES
-   ======================================== */
-
 @media (max-width: 480px) {
   .med-contenedor {
     padding: 16px 12px 35px;
@@ -683,15 +606,16 @@
   }
 
   .med-encabezado h1 {
-    font-size: 26px;
+    font-size: 28px;
   }
 
-  .med-ilustracion {
-    display: none;
+  .med-encabezado p {
+    font-size: 16px;
   }
 
   .med-resumen {
     gap: 10px;
+    grid-template-columns: 1fr;
   }
 
   .med-resumen-card {
@@ -699,12 +623,16 @@
   }
 
   .med-resumen-card strong {
-    font-size: 26px;
+    font-size: 30px;
   }
 
   .med-panel {
-    padding: 19px;
+    padding: 20px;
     border-radius: 16px;
+  }
+
+  .med-panel h2 {
+    font-size: 28px;
   }
 
   .med-detalles {
@@ -716,32 +644,10 @@
   }
 
   .med-tarjeta {
-    padding: 15px;
+    padding: 16px;
   }
-}
 
-/* ========================================
-   14. INTEGRACIÓN CON VITE
-   ======================================== */
-
-/*
- * El CSS inicial de Vite centra la aplicación
- * y establece un ancho máximo.
- *
- * Estas reglas solo se aplican cuando existe
- * nuestra página de medicamentos.
- */
-
-body:has(.med-contenedor) {
-  display: block;
-  margin: 0;
-  min-width: 320px;
-}
-
-#root:has(.med-contenedor) {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 0;
-  text-align: left;
+  .med-tarjeta h3 {
+    font-size: 23px;
+  }
 }
