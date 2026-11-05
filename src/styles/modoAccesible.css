@@ -1,0 +1,264 @@
+
+/*accesibilidad, ajustes especiales para personas mayores.*/
+
+/* panel de accesibilidad*/
+
+.mc-accesibilidad {
+  position: relative;
+  z-index: 20;
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 20px;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.mc-accesibilidad-boton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  min-height: 48px;
+  padding: 11px 18px;
+
+  background: #676F54;
+  color: #FFFFFF;
+  border: 2px solid #676F54;
+  border-radius: 8px;
+
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mc-accesibilidad-panel {
+  width: min(360px, 90vw);
+  margin-top: 10px;
+  padding: 22px;
+
+  background: #FFFFFF;
+  color: #304432;
+  border: 1px solid #9CC69B;
+  border-radius: 12px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+}
+
+.mc-accesibilidad-panel h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.mc-accesibilidad-panel p {
+  margin: 0 0 18px;
+  line-height: 1.5;
+}
+
+.mc-accesibilidad-opcion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+
+  padding: 14px 0;
+  border-bottom: 1px solid #D9E5D3;
+  cursor: pointer;
+}
+
+.mc-accesibilidad-opcion span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mc-accesibilidad-opcion small {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.mc-accesibilidad-opcion input {
+  width: 23px;
+  height: 23px;
+  flex-shrink: 0;
+  accent-color: #676F54;
+}
+
+.mc-accesibilidad-restablecer {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 18px;
+  padding: 10px;
+
+  background: #D7F2BA;
+  color: #304432;
+  border: 1px solid #9CC69B;
+  border-radius: 7px;
+
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Mantiene visible el foco al navegar con teclado. */
+.mc-accesibilidad button:focus-visible,
+.mc-accesibilidad input:focus-visible {
+  outline: 3px solid #79B4A9;
+  outline-offset: 3px;
+}
+
+/* ====================================
+   TEXTO GRANDE
+   ==================================== */
+
+/*se aumenta la letra, campos y partes del formulario*/
+html[data-mc-texto-grande="true"] {
+  font-size: 20px;
+}
+
+html[data-mc-texto-grande="true"] :is(
+  p, label, li, td, th, dd, dt, small, span,
+  input, select, textarea, button, a
+) {
+  font-size: max(18px, 1em) !important;
+  line-height: 1.6;
+}
+
+html[data-mc-texto-grande="true"] :is(
+  h1, h2, h3
+) {
+  line-height: 1.35;
+}
+
+html[data-mc-texto-grande="true"] :is(
+  button, input, select, textarea
+) {
+  min-height: 52px;
+}
+
+/*alto contraste blanco y negro*/
+
+/* Fondo general blanco con texto negro. */
+html[data-mc-contraste="true"],
+html[data-mc-contraste="true"] body,
+html[data-mc-contraste="true"] #root {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+/*
+ * Cambia los fondos decorativos y tarjetas
+ * del módulo de medicamentos.
+ */
+html[data-mc-contraste="true"] :is(
+  .med-contenedor,
+  .med-panel,
+  .med-tarjeta,
+  .med-detalle,
+  .med-aviso,
+  .med-resumen-card,
+  .med-vacio,
+  .app-contenedor,
+  .app-principal,
+  .app-herramientas,
+  .mc-accesibilidad-panel
+) {
+  background: #FFFFFF !important;
+  background-image: none !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+  box-shadow: none !important;
+}
+
+/* Todo el texto debe tener contraste suficiente. */
+html[data-mc-contraste="true"] :is(
+  h1, h2, h3, h4, p, label, small, strong,
+  span, dt, dd, li
+) {
+  color: #000000 !important;
+}
+
+/* Encabezados en negro y blanco. */
+html[data-mc-contraste="true"] :is(
+  .med-encabezado,
+  .app-cabecera
+) {
+  background: #000000 !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+}
+
+html[data-mc-contraste="true"] :is(
+  .med-encabezado,
+  .app-cabecera
+) :is(h1, h2, p, span) {
+  color: #FFFFFF !important;
+}
+
+/* Botones negros con letras blancas. */
+html[data-mc-contraste="true"] :is(
+  .med-btn,
+  .app-navegacion button,
+  .app-botones button,
+  .mc-accesibilidad-boton,
+  .mc-accesibilidad-restablecer
+) {
+  background: #000000 !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+  border: 2px solid #000000 !important;
+  box-shadow: none !important;
+}
+
+/* Controles blancos con bordes negros. */
+html[data-mc-contraste="true"] :is(
+  input:not([type="checkbox"]),
+  select,
+  textarea,
+  .med-buscador
+) {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+}
+
+/* Foco claramente visible. */
+html[data-mc-contraste="true"] :is(
+  button, input, select, textarea, a
+):focus-visible {
+  outline: 3px solid #000000 !important;
+  outline-offset: 4px;
+}
+
+/* Se distinguen los enlaces con subrayado. */
+html[data-mc-contraste="true"] a {
+  color: #000000 !important;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+/* Mantiene visibles las alertas de error. */
+html[data-mc-contraste="true"] :is(
+  .med-mensaje-error,
+  .med-mensaje-exito,
+  .med-error
+) {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+}
+
+/* Celular */
+
+@media (max-width: 520px) {
+  .mc-accesibilidad {
+    width: 100%;
+  }
+
+  .mc-accesibilidad-boton {
+    width: 100%;
+  }
+
+  .mc-accesibilidad-panel {
+    width: 100%;
+  }
+}
