@@ -1,122 +1,194 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+/*
+ * MEDICONTROL - MÓDULO DE HISTORIAL
+ *
+ * Esta versión permite probar el trabajo de la Persona 2.
+ * Muestra las tomas del día y el historial registrado.
+ */
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+import { useState } from "react";
 
-      <div className="ticks"></div>
+// Importamos los componentes con sus nombres reales.
+import VistaHoy from "./components/visitahoy.jsx";
+import Historial from "./components/historial.jsx";
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+// Funciones para consultar y guardar el historial.
+import {
+  obtenerHistorial,
+  guardarHistorial,
+} from "./components/historial.js";
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+import "./App.css";
+
+// Misma clave que utiliza la Persona 1.
+const CLAVE_MEDICAMENTOS = "medicontrol_medicamentos_v1";
+
+/*
+ * Recuperar medicamentos desde localStorage.
+ * Si todavía no hay registros, devolvemos [].
+ */
+function cargarMedicamentos() {
+  try {
+    const datos = localStorage.getItem(CLAVE_MEDICAMENTOS);
+    const lista = datos ? JSON.parse(datos) : [];
+
+    return Array.isArray(lista) ? lista : [];
+  } catch (error) {
+    console.error("Error al cargar medicamentos:", error);
+    return [];
+  }
 }
 
-export default App
+function App() {
+  // Controla cuál pantalla se muestra.
+  const [pantalla, setPantalla] = useState("hoy");
+
+  // Lista de medicamentos compartida con VistaHoy.
+  const [medicamentos, setMedicamentos] = useState(cargarMedicamentos);
+
+  // Historial compartido entre VistaHoy e Historial.
+  const [historial, setHistorial] = useState(obtenerHistorial);
+
+  /*
+   * Actualiza el historial en React y localStorage.
+   * Esto permite ver inmediatamente las tomas marcadas.
+   */
+  const actualizarHistorial = (nuevosRegistros) => {
+    guardarHistorial(nuevosRegistros);
+    setHistorial(nuevosRegistros);
+  };
+
+  // Recarga los medicamentos guardados en el navegador.
+  const actualizarMedicamentos = () => {
+    setMedicamentos(cargarMedicamentos());
+  };
+
+  /*
+   * Agrega un medicamento ficticio para realizar pruebas
+   * cuando todavía no está integrado el módulo de la Persona 1.
+   */
+  const agregarEjemplo = () => {
+    const lista = cargarMedicamentos();
+
+    const ejemplo = {
+      id: "medicamento-demo-historial",
+      nombre: "Medicamento de prueba",
+      dosis: "1 tableta",
+      frecuencia: 8,
+      horaInicio: "08:00",
+      activo: true,
+    };
+
+    // Evita registrar dos veces el mismo ejemplo.
+    const existe = lista.some(
+      (medicamento) => medicamento.id === ejemplo.id
+    );
+
+    if (existe) {
+      setMedicamentos(lista);
+      return;
+    }
+
+    const nuevaLista = [...lista, ejemplo];
+
+    try {
+      localStorage.setItem(
+        CLAVE_MEDICAMENTOS,
+        JSON.stringify(nuevaLista)
+      );
+
+      setMedicamentos(nuevaLista);
+    } catch (error) {
+      console.error("Error al guardar medicamento:", error);
+    }
+  };
+
+  return (
+    <div className="app-contenedor">
+      {/* Encabezado principal */}
+      <header className="app-cabecera">
+        <div className="app-cabecera-interior">
+          <div>
+            <h1>MediControl</h1>
+            <p>Seguimiento de medicamentos</p>
+          </div>
+
+          <span className="app-modulo">
+            Módulo de historial
+          </span>
+        </div>
+      </header>
+
+      <main className="app-principal">
+        {/* Botones para cambiar de pantalla */}
+        <nav
+          className="app-navegacion"
+          aria-label="Secciones del historial"
+        >
+          <button
+            type="button"
+            className={pantalla === "hoy" ? "seleccionado" : ""}
+            onClick={() => setPantalla("hoy")}
+          >
+            Tomas de hoy
+          </button>
+
+          <button
+            type="button"
+            className={
+              pantalla === "historial" ? "seleccionado" : ""
+            }
+            onClick={() => setPantalla("historial")}
+          >
+            Historial
+          </button>
+        </nav>
+
+        {/* Herramientas para consultar medicamentos */}
+        <section className="app-herramientas">
+          <span>
+            {medicamentos.length} medicamento(s) registrado(s)
+          </span>
+
+          <div className="app-botones">
+            <button
+              type="button"
+              onClick={actualizarMedicamentos}
+            >
+              Actualizar medicamentos
+            </button>
+
+            {medicamentos.length === 0 && (
+              <button
+                type="button"
+                className="app-demo"
+                onClick={agregarEjemplo}
+              >
+                Agregar medicamento de prueba
+              </button>
+            )}
+          </div>
+        </section>
+
+        {/* Mostramos únicamente la pantalla seleccionada */}
+        {pantalla === "hoy" ? (
+          <VistaHoy
+            medicamentos={medicamentos}
+            historialCompartido={historial}
+            setHistorialCompartido={actualizarHistorial}
+          />
+        ) : (
+          <Historial historialCompartido={historial} />
+        )}
+
+        {/* Aviso obligatorio del proyecto */}
+        <footer className="app-nota">
+          MediControl es un prototipo educativo y no sustituye
+          las indicaciones de un profesional de salud.
+        </footer>
+      </main>
+    </div>
+  );
+}
+
+export default App;
