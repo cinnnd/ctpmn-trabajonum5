@@ -1,0 +1,653 @@
+
+
+/* ========================================
+   1. PALETA DE COLORES
+   ======================================== */
+
+.med-contenedor {
+  --med-tea-green: #D7F2BA;
+  --med-celadon-light: #BDE4A8;
+  --med-celadon: #9CC69B;
+  --med-muted-teal: #79B4A9;
+  --med-dusty-olive: #676F54;
+
+  --med-fondo: #F5F8F2;
+  --med-blanco: #FFFFFF;
+  --med-texto: #2F4330;
+  --med-texto-suave: #5F715C;
+  --med-borde: #D9E5D3;
+  --med-error: #A54040;
+
+  width: 100%;
+  min-height: 100vh;
+  padding: 36px 24px 60px;
+  background: var(--med-fondo);
+  color: var(--med-texto);
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.med-contenedor,
+.med-contenedor * {
+  box-sizing: border-box;
+}
+
+/* Evita que Vite centre raro la app */
+body:has(.med-contenedor) {
+  display: block;
+  margin: 0;
+  min-width: 320px;
+}
+
+#root:has(.med-contenedor) {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* ========================================
+   2. ENCABEZADO PRINCIPAL
+   ======================================== */
+
+.med-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  max-width: 1150px;
+  min-height: 170px;
+  margin: 0 auto 22px;
+  padding: 32px 36px;
+
+  /* QUITAMOS EL DEGRADADO */
+  background: #B9D6A5;
+
+  border: 1px solid #cfe0c6;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px rgba(68, 93, 64, 0.08);
+}
+
+.med-encabezado-texto {
+  max-width: 760px;
+}
+
+.med-etiqueta {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 7px 12px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 30px;
+  color: #354F38;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.med-encabezado h1 {
+  margin: 0 0 12px;
+  color: #243A2D;
+  font-size: clamp(34px, 4vw, 46px);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.med-encabezado p {
+  margin: 0;
+  color: #38503C;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* Ocultamos el icono grande del encabezado */
+.med-ilustracion {
+  display: none;
+}
+
+/* ========================================
+   3. AVISO
+   ======================================== */
+
+.med-aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  max-width: 1150px;
+  margin: 0 auto 22px;
+  padding: 16px 20px;
+
+  background: #EEF5E8;
+  border: 1px solid #B9D6A5;
+  border-left: 5px solid var(--med-dusty-olive);
+  border-radius: 13px;
+
+  color: #43553B;
+}
+
+.med-aviso > span {
+  display: none;
+}
+
+.med-aviso p {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* ========================================
+   4. TARJETAS DE RESUMEN
+   ======================================== */
+
+.med-resumen {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+
+  max-width: 1150px;
+  margin: 0 auto 25px;
+}
+
+.med-resumen-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+
+  min-width: 0;
+  padding: 22px 22px;
+
+  background: var(--med-blanco);
+  border: 1px solid var(--med-borde);
+  border-radius: 17px;
+
+  box-shadow: 0 5px 15px rgba(51, 72, 47, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.med-resumen-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 22px rgba(51, 72, 47, 0.09);
+}
+
+.med-resumen-card:first-child {
+  background: #cfe0c6;
+}
+
+.med-resumen-card span {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--med-texto-suave);
+}
+
+.med-resumen-card strong {
+  font-size: 42px;
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--med-dusty-olive);
+}
+
+.med-resumen-card small {
+  font-size: 15px;
+  color: var(--med-texto-suave);
+}
+
+/* ========================================
+   5. FORMULARIO Y LISTA
+   ======================================== */
+
+.med-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 430px) minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.med-panel {
+  min-width: 0;
+  padding: 30px;
+
+  background: var(--med-blanco);
+  border: 1px solid var(--med-borde);
+  border-radius: 20px;
+
+  box-shadow: 0 7px 25px rgba(51, 72, 47, 0.06);
+}
+
+/* ========================================
+   6. TÍTULOS DE SECCIÓN
+   ======================================== */
+
+.med-seccion-titulo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.med-seccion-icono {
+  display: none;
+}
+
+.med-panel h2 {
+  margin: 0 0 6px;
+  color: var(--med-texto);
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.med-seccion-titulo p,
+.med-lista-titulo p {
+  margin: 0;
+  color: var(--med-texto-suave);
+  font-size: 16px;
+}
+
+/* ========================================
+   7. FORMULARIO
+   ======================================== */
+
+.med-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.med-campo label {
+  font-size: 17px;
+  color: var(--med-texto);
+  font-weight: 700;
+}
+
+.med-campo > input,
+.med-campo > select {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+
+  background: #FAFCF8;
+  border: 1px solid #C9DAC0;
+  border-radius: 11px;
+
+  color: var(--med-texto);
+  font-family: inherit;
+  font-size: 16px;
+
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.med-campo input::placeholder {
+  color: #748472;
+}
+
+.med-campo input:focus,
+.med-campo select:focus {
+  outline: none;
+  border-color: var(--med-muted-teal);
+  box-shadow: 0 0 0 3px rgba(121, 180, 169, 0.25);
+}
+
+.med-campo [aria-invalid="true"] {
+  border-color: var(--med-error);
+}
+
+.med-ayuda {
+  font-size: 14px;
+  color: var(--med-texto-suave);
+}
+
+.med-error {
+  color: var(--med-error);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ========================================
+   8. BOTONES
+   ======================================== */
+
+.med-acciones,
+.med-tarjeta-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.med-acciones {
+  margin-top: 24px;
+}
+
+.med-btn {
+  min-height: 46px;
+  padding: 11px 18px;
+
+  border: 1px solid transparent;
+  border-radius: 11px;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.med-btn:hover {
+  transform: translateY(-2px);
+}
+
+.med-btn:focus-visible {
+  outline: 3px solid var(--med-muted-teal);
+  outline-offset: 3px;
+}
+
+.med-btn-primario {
+  background: var(--med-dusty-olive);
+  color: white;
+}
+
+.med-btn-primario:hover {
+  background: #4E5A3F;
+}
+
+.med-btn-secundario {
+  background: var(--med-celadon-light);
+  color: #304432;
+  border-color: #A6D093;
+}
+
+.med-btn-secundario:hover {
+  background: var(--med-celadon);
+}
+
+.med-btn-peligro {
+  background: #FBECEC;
+  color: #A12E36;
+  border-color: #EFC6C6;
+}
+
+.med-btn-peligro:hover {
+  background: #F5D7D7;
+}
+
+/* ========================================
+   9. LISTA Y BUSCADOR
+   ======================================== */
+
+.med-lista-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.med-contador {
+  padding: 9px 14px;
+
+  background: var(--med-tea-green);
+  border-radius: 30px;
+
+  color: #39523A;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.med-buscador {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-height: 52px;
+  padding: 0 13px;
+
+  background: #FAFCF8;
+  border: 1px solid #C9DAC0;
+  border-radius: 11px;
+}
+
+.med-buscador:focus-within {
+  border-color: var(--med-muted-teal);
+  box-shadow: 0 0 0 3px rgba(121, 180, 169, 0.25);
+}
+
+.med-buscador span {
+  display: none;
+}
+
+.med-buscador input {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 0;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  color: var(--med-texto);
+  font: inherit;
+  font-size: 16px;
+}
+
+/* ========================================
+   10. TARJETAS DE MEDICAMENTOS
+   ======================================== */
+
+.med-tarjetas {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 22px;
+}
+
+.med-tarjeta {
+  padding: 22px;
+
+  background: linear-gradient(145deg, #FFFFFF, #F8FCF5);
+  border: 1px solid var(--med-borde);
+  border-left: 4px solid var(--med-muted-teal);
+  border-radius: 15px;
+
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.med-tarjeta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(65, 87, 60, 0.08);
+}
+
+.med-tarjeta-encabezado {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.med-icono {
+  display: none;
+}
+
+.med-tarjeta-identidad {
+  min-width: 0;
+}
+
+.med-tarjeta-etiqueta {
+  color: var(--med-texto-suave);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.med-tarjeta h3 {
+  margin: 6px 0 0;
+  color: var(--med-texto);
+  font-size: 29px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.med-detalles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  margin: 21px 0;
+}
+
+.med-detalle {
+  min-width: 0;
+  padding: 12px 14px;
+
+  background: #EEF6E8;
+  border-radius: 10px;
+}
+
+.med-detalle dt {
+  margin-bottom: 6px;
+  color: var(--med-texto-suave);
+  font-size: 14px;
+}
+
+.med-detalle dd {
+  margin: 0;
+  color: var(--med-texto);
+  font-size: 17px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.med-tarjeta-acciones {
+  padding-top: 15px;
+  border-top: 1px solid var(--med-borde);
+}
+
+/* ========================================
+   11. MENSAJES Y VACÍO
+   ======================================== */
+
+.med-vacio {
+  padding: 35px 20px;
+  margin-top: 20px;
+
+  background: #F3F9EF;
+  border: 1px dashed #B4D2A7;
+  border-radius: 15px;
+
+  text-align: center;
+}
+
+.med-vacio > span {
+  display: none;
+}
+
+.med-vacio h3 {
+  margin: 12px 0 7px;
+  font-size: 22px;
+}
+
+.med-vacio p {
+  margin: 0;
+  color: var(--med-texto-suave);
+  font-size: 15px;
+}
+
+.med-mensaje-exito,
+.med-mensaje-error {
+  max-width: 1150px;
+  margin: 0 auto 20px;
+  padding: 14px 18px;
+
+  border-radius: 11px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.med-mensaje-exito {
+  background: #E2F3D9;
+  color: #2C603A;
+  border: 1px solid #A6D49B;
+}
+
+.med-mensaje-error {
+  background: #FCE8E8;
+  color: #9A2D33;
+  border: 1px solid #F0BFBF;
+}
+
+/* ========================================
+   12. RESPONSIVE
+   ======================================== */
+
+@media (max-width: 900px) {
+  .med-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .med-resumen {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .med-encabezado {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .med-contenedor {
+    padding: 16px 12px 35px;
+  }
+
+  .med-encabezado {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+
+  .med-encabezado h1 {
+    font-size: 28px;
+  }
+
+  .med-encabezado p {
+    font-size: 16px;
+  }
+
+  .med-resumen {
+    gap: 10px;
+    grid-template-columns: 1fr;
+  }
+
+  .med-resumen-card {
+    padding: 16px;
+  }
+
+  .med-resumen-card strong {
+    font-size: 30px;
+  }
+
+  .med-panel {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .med-panel h2 {
+    font-size: 28px;
+  }
+
+  .med-detalles {
+    grid-template-columns: 1fr;
+  }
+
+  .med-btn {
+    flex: 1;
+  }
+
+  .med-tarjeta {
+    padding: 16px;
+  }
+
+  .med-tarjeta h3 {
+    font-size: 23px;
+  }
+}
