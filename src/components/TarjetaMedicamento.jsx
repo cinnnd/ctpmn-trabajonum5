@@ -1,4 +1,6 @@
 
+/*tarjeta de medicamento, muentra la info de un medicamento y permite editarlo o eliminarlo*/
+
 import { obtenerTextoFrecuencia } from "../utils/medicamentos";
 
 function TarjetaMedicamento({
@@ -6,9 +8,10 @@ function TarjetaMedicamento({
   onEditar,
   onEliminar,
 }) {
+  /*confirmar eliminacion, solicita confirmacion antes de eliminar*/
   const confirmarEliminacion = () => {
     const confirmado = window.confirm(
-      `¿Desea eliminar el medicamento "${medicamento.nombre}"?`
+      `¿Desea eliminar "${medicamento.nombre}"?`
     );
 
     if (confirmado) {
@@ -18,34 +21,42 @@ function TarjetaMedicamento({
 
   return (
     <article className="med-tarjeta">
-      <div className="med-tarjeta-contenido">
-        <div className="med-tarjeta-encabezado">
-          <span className="med-icono" aria-hidden="true">
-            💊
+      {/* Encabezado de la tarjeta */}
+      <div className="med-tarjeta-encabezado">
+        <span className="med-icono" aria-hidden="true">
+          💊
+        </span>
+
+        <div className="med-tarjeta-identidad">
+          <span className="med-tarjeta-etiqueta">
+            Medicamento registrado
           </span>
+
           <h3>{medicamento.nombre}</h3>
         </div>
-
-        <dl className="med-detalles">
-          <div>
-            <dt>Dosis</dt>
-            <dd>{medicamento.dosis}</dd>
-          </div>
-
-          <div>
-            <dt>Frecuencia</dt>
-            <dd>
-              {obtenerTextoFrecuencia(medicamento.frecuencia)}
-            </dd>
-          </div>
-
-          <div>
-            <dt>Hora de inicio</dt>
-            <dd>{medicamento.horaInicio}</dd>
-          </div>
-        </dl>
       </div>
 
+      {/* Información principal del medicamento */}
+      <dl className="med-detalles">
+        <div className="med-detalle">
+          <dt>Dosis</dt>
+          <dd>{medicamento.dosis}</dd>
+        </div>
+
+        <div className="med-detalle">
+          <dt>Frecuencia</dt>
+          <dd>
+            {obtenerTextoFrecuencia(medicamento.frecuencia)}
+          </dd>
+        </div>
+
+        <div className="med-detalle">
+          <dt>Hora de inicio</dt>
+          <dd>{medicamento.horaInicio}</dd>
+        </div>
+      </dl>
+
+      {/* Acciones disponibles */}
       <div className="med-tarjeta-acciones">
         <button
           type="button"
@@ -53,7 +64,7 @@ function TarjetaMedicamento({
           onClick={() => onEditar(medicamento)}
           aria-label={`Editar ${medicamento.nombre}`}
         >
-          Editar
+          ✎ Editar
         </button>
 
         <button
@@ -62,7 +73,7 @@ function TarjetaMedicamento({
           onClick={confirmarEliminacion}
           aria-label={`Eliminar ${medicamento.nombre}`}
         >
-          Eliminar
+          ✕ Eliminar
         </button>
       </div>
     </article>
