@@ -141,6 +141,19 @@ body {
   font-weight: bold;
 }
 
+.navbar-contenido {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.navbar-info {
+  display: flex;
+  flex-direction: column;
+}
+
 /* ===== ESTILOS PARA LAS PÁGINAS ===== */
 .pagina {
   padding: 1rem 0;
@@ -343,4 +356,67 @@ body {
   border-radius: 12px;
   font-size: 0.8rem;
   margin-top: 0.5rem;
+}
+
+/* ===== MODO ACCESIBLE (Alto contraste y letra grande) ===== */
+body.modo-accesible {
+  /* Sobrescribimos las variables con colores de alto contraste */
+  --color-claro: #ffffff;
+  --color-claro-medio: #e0e0e0;
+  --color-medio: #000000;
+  --color-azulado: #0000cc; /* Azul puro para enlaces */
+  --color-oscuro: #000000;
+  --color-texto: #000000;
+  --color-blanco: #ffffff;
+  --color-fondo: #ffffff;
+  
+  /* Letra grande */
+  font-size: 120%; 
+}
+
+/* Aseguramos que los bordes se vean bien en alto contraste */
+body.modo-accesible .tarjeta,
+body.modo-accesible .formulario-cita,
+body.modo-accesible .agenda-citas {
+  border: 2px solid #000000;
+  box-shadow: none;
+}
+
+body.modo-accesible .navbar {
+  border-bottom: 3px solid #000000;
+}
+
+body.modo-accesible .btn-agregar,
+body.modo-accesible .btn-completar {
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+body.modo-accesible .btn-eliminar {
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+}
+
+/* Botón del modo accesible */
+.btn-accesible {
+  background-color: var(--color-claro-medio);
+  color: var(--color-oscuro);
+  border: 2px solid var(--color-oscuro);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: auto; /* Empuja el botón a la derecha en el navbar */
+}
+
+.btn-accesible:hover {
+  background-color: var(--color-blanco);
+}
+
+body.modo-accesible .btn-accesible {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #ffffff;
 }

@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useState, useEffect } from 'react'          //el useState, useEffect es para activar o desactivar la clase en body
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Inicio from './pages/Inicio'
@@ -8,12 +9,33 @@ import Historial from './pages/Historial'
 import './index.css'
 
 function App() {
+  // Estado para saber si el modo accesible está activo
+  const [modoAccesible, setModoAccesible] = useState(false)
+
+  // Efecto: Cada vez que cambie 'modoAccesible', agregamos o quitamos la clase al body
+  useEffect(() => {
+    if (modoAccesible) {
+      document.body.classList.add('modo-accesible')
+    } else {
+      document.body.classList.remove('modo-accesible')
+    }
+  }, [modoAccesible])
+
+  // Función para cambiar el estado
+  const toggleModoAccesible = () => {
+    setModoAccesible(!modoAccesible)
+  }
+
   return (
     <BrowserRouter>
       <div className="app-layout">
-        <Navbar />
+        {/* eso hace que el boton aparesca y funcione en el navbar */}
+        <Navbar 
+          modoAccesible={modoAccesible} 
+          onToggleAccesible={toggleModoAccesible} 
+        />
         <main className="contenido-principal">
-          <Routes>                                  /* el route y routes definen que componentes muestra segun su url */
+          <Routes>
             <Route path="/" element={<Inicio />} />
             <Route path="/medicamentos" element={<Medicamentos />} />
             <Route path="/citas" element={<Citas />} />
@@ -22,7 +44,7 @@ function App() {
         </main>
         <Footer />
       </div>
-    </BrowserRouter> /*METE todo en una app para habilitar la edicion*/
+    </BrowserRouter>
   )
 }
 
