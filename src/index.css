@@ -109,3 +109,58 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+
+/*
+ * MEDICONTROL - ESTILOS GENERALES
+ *
+ * Configuración base de React.
+ * Los estilos particulares de cada módulo
+ * se encuentran en sus respectivos CSS.
+ */
+
+:root {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #304432;
+  background: #F5F8F2;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Todos los elementos respetan sus dimensiones */
+* {
+  box-sizing: border-box;
+}
+
+/* Evita el centrado predeterminado de Vite */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100%;
+}
+
+/* React puede ocupar todo el ancho */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Los controles utilizan la misma tipografía */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Mejora la navegación mediante teclado */
+:focus-visible {
+  outline: 3px solid #79B4A9;
+  outline-offset: 2px;
+}

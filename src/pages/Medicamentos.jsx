@@ -2,7 +2,7 @@
 /*medicontrol, es la pagina principal. coordina el formulario de registro y edicion, la lista de medicamentos, el localstorage, las operaciones CRUD, los mensajes de error y confirmación.*/
 
 import { useState } from "react";
-
+import ModoAccesible from "../components/ModoAccesible";
 import FormularioMedicamento from "../components/FormularioMedicamento";
 import ListaMedicamentos from "../components/ListaMedicamentos";
 
@@ -139,20 +139,19 @@ function Medicamentos() {
 
   return (
     <main className="med-contenedor">
-      {/* ENCABEZADO PRINCIPAL */}
-        <header className="med-encabezado">
-            <div className="med-encabezado-texto">
-                <span className="med-etiqueta">MEDICONTROL</span>
+      <header className="med-encabezado">
+        <div className="med-encabezado-principal">
+          <span className="med-badge">MEDICONTROL</span>
+          <h1>Gestión de medicamentos</h1>
+          <p>
+            Un espacio sencillo para organizar sus medicamentos y consultar sus horarios.
+          </p>
+        </div>
 
-                <h1>Gestión de medicamentos</h1>
-
-                <p>
-                Un espacio sencillo para organizar sus medicamentos y consultar sus horarios.
-                </p>
-            </div>
-
-            <div className="med-ilustracion" aria-hidden="true"></div>
-        </header>
+        <div className="med-encabezado-lateral">
+          <ModoAccesible />
+        </div>
+      </header>
 
       {/* AVISO OBLIGATORIO DEL PROYECTO */}
       <aside className="med-aviso" role="note">

@@ -651,3 +651,131 @@ body:has(.med-contenedor) {
     font-size: 23px;
   }
 }
+
+/* Encabezado principal */
+.med-encabezado {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+
+  min-height: 150px;
+  padding: 30px 36px;
+
+  background: #B9D6A5;
+  border-radius: 18px;
+  overflow: visible;
+}
+
+/* Texto a la izquierda */
+.med-encabezado-principal {
+  flex: 1 1 380px;
+  min-width: 0;
+  max-width: 760px;
+}
+
+/* Identificador superior de MediControl */
+.med-badge {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 7px 13px;
+
+  background: #F4F8EE;
+  color: #304432;
+  border-radius: 20px;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Título de la página */
+.med-encabezado h1 {
+  margin: 0 0 10px;
+  color: #243A2D;
+  font-size: clamp(30px, 4vw, 43px);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* Descripción */
+.med-encabezado p {
+  margin: 0;
+  color: #38503C;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Botón de accesibilidad a la derecha */
+.med-encabezado-lateral {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex: 0 0 auto;
+  align-self: flex-start;
+}
+
+/* Fondo uniforme para las tarjetas de resumen */
+.med-resumen-card {
+  border-top: 3px solid #9CC69B;
+}
+
+/* Diferenciamos las frecuencias con la misma paleta */
+.med-resumen-card:nth-child(1) {
+  background: #D7F2BA;
+  border-top-color: #676F54;
+}
+
+.med-resumen-card:nth-child(2) {
+  border-top-color: #79B4A9;
+}
+
+.med-resumen-card:nth-child(3) {
+  border-top-color: #9CC69B;
+}
+
+.med-resumen-card:nth-child(4) {
+  border-top-color: #676F54;
+}
+
+/* Se corrige el borde del aviso informativo */
+.med-aviso {
+  border-left-color: #676F54;
+}
+
+/* Diseño adaptable a tabletas */
+@media (max-width: 900px) {
+  .med-encabezado {
+    align-items: flex-start;
+    padding: 26px;
+  }
+
+  .med-encabezado-lateral {
+    justify-content: flex-start;
+  }
+}
+
+/* Diseño adaptable a celulares */
+@media (max-width: 560px) {
+  .med-encabezado {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 22px 18px;
+  }
+
+  .med-encabezado-principal {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .med-encabezado-lateral {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .med-encabezado h1 {
+    font-size: 30px;
+  }
+}
