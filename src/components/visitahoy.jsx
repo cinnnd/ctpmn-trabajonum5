@@ -10,7 +10,7 @@ import {
   obtenerHistorial,
   guardarHistorial,
   actualizarToma,
-} from "./historial.jsx";
+} from "./historial.js";
 
 function VistaHoy({
   medicamentos = [],
