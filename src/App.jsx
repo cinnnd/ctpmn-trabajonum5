@@ -1,50 +1,54 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useState, useEffect } from 'react'   //el useState, useEffect es para activar o desactivar la clase en body
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Inicio from './pages/Inicio'
-import Medicamentos from './pages/Medicamentos'
-import Citas from './pages/Citas'
-import Historial from './pages/Historial'
-import './index.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Inicio from "./pages/Inicio";
+import Medicamentos from "./pages/Medicamentos";
+import Citas from "./pages/Citas";
+import Historial from "./pages/Historial";
+import "./index.css";
+
+const CLAVE_ACCESIBILIDAD = "mc-accesibilidad";
+
+// Recuperar preferencias sin sobrescribir las que ya tenía el usuario.
+function cargarAccesibilidad() {
+  try {
+    const guardado = JSON.parse(localStorage.getItem(CLAVE_ACCESIBILIDAD) || "{}");
+    return {
+      textoGrande: guardado.textoGrande === true,
+      altoContraste: guardado.altoContraste === true,
+    };
+  } catch {
+    return { textoGrande: false, altoContraste: false };
+  }
+}
 
 function App() {
-  const [textoGrande, setTextoGrande] = useState(false)   //letras grandes para el modo accesible 
-  const [altoContraste, setAltoContraste] = useState(false)  ///contraste alto para el modo accesible 
+  const [accesibilidad, setAccesibilidad] = useState(cargarAccesibilidad);
 
+  // Un único estado controla la accesibilidad de todas las páginas.
   useEffect(() => {
-    const body = document.body
-    
-    if (textoGrande) {
-      body.classList.add('texto-grande')
-    } else {
-      body.classList.remove('texto-grande')
+    const { textoGrande, altoContraste } = accesibilidad;
+    document.documentElement.dataset.mcTextoGrande = String(textoGrande);
+    document.documentElement.dataset.mcContraste = String(altoContraste);
+    document.body.classList.toggle("texto-grande", textoGrande);
+    document.body.classList.toggle("alto-contraste", altoContraste);
+    try {
+      localStorage.setItem(CLAVE_ACCESIBILIDAD, JSON.stringify(accesibilidad));
+    } catch (error) {
+      console.error("No se pudo guardar accesibilidad:", error);
     }
-
-    if (altoContraste) {
-      body.classList.add('alto-contraste')
-    } else {
-      body.classList.remove('alto-contraste')
-    }
-  }, [textoGrande, altoContraste])
-
-  const toggleTextoGrande = () => setTextoGrande(!textoGrande)
-  const toggleAltoContraste = () => setAltoContraste(!altoContraste)
-  
-  const restablecer = () => {
-    setTextoGrande(false)
-    setAltoContraste(false)
-  }
+  }, [accesibilidad]);
 
   return (
     <BrowserRouter>
       <div className="app-layout">
-        <Navbar 
-          textoGrande={textoGrande}
-          altoContraste={altoContraste}
-          onToggleTexto={toggleTextoGrande}
-          onToggleContraste={toggleAltoContraste}
-          onRestablecer={restablecer}
+        <Navbar
+          textoGrande={accesibilidad.textoGrande}
+          altoContraste={accesibilidad.altoContraste}
+          onToggleTexto={() => setAccesibilidad(a => ({ ...a, textoGrande: !a.textoGrande }))}
+          onToggleContraste={() => setAccesibilidad(a => ({ ...a, altoContraste: !a.altoContraste }))}
+          onRestablecer={() => setAccesibilidad({ textoGrande: false, altoContraste: false })}
         />
         <main className="contenido-principal">
           <Routes>
@@ -57,7 +61,7 @@ function App() {
         <Footer />
       </div>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

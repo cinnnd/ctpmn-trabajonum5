@@ -694,3 +694,11 @@ body.alto-contraste .panel-accesible {
   padding: 0;
   margin: 0;
 }
+
+/* Inicio: solo accesos a los módulos. */
+.inicio-accesos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.inicio-accesos .tarjeta-grande { height: 100%; display: flex; flex-direction: column; }
+.inicio-accesos .btn-enlace { align-self: flex-start; margin-top: auto; }
+/* Accesibilidad global y distribución adaptable. */
+#root { width: 100%; min-height: 100vh; }
+@media (max-width: 750px) { .contenido-principal { padding: 16px; } .inicio-accesos { grid-template-columns: 1fr; } }

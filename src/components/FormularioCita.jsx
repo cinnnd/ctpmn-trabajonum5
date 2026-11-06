@@ -36,7 +36,7 @@ export default function FormularioCita({ onAgregarCita }) {
             nuevosErrores.fecha = 'La fecha es obligatoria'
         } else {
             // Validar que la fecha no sea en el pasado
-            const fechaSeleccionada = new Date(cita.fecha)
+            const fechaSeleccionada = new Date(`${cita.fecha}T12:00:00`)
             const hoy = new Date()
             hoy.setHours(0, 0, 0, 0)
             if (fechaSeleccionada < hoy) {

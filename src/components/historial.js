@@ -64,9 +64,14 @@ export const ordenarTomas = (tomas) => {
 
 // Obtener historial guardado
 export const obtenerHistorial = () => {
-  const datos = localStorage.getItem(CLAVE_HISTORIAL);
-
-  return datos ? JSON.parse(datos) : [];
+  try {
+    const datos = localStorage.getItem(CLAVE_HISTORIAL);
+    const registros = datos ? JSON.parse(datos) : [];
+    return Array.isArray(registros) ? registros : [];
+  } catch (error) {
+    console.error("Error al recuperar historial:", error);
+    return [];
+  }
 };
 
 // Guardar historial

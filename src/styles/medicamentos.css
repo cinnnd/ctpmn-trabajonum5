@@ -1245,3 +1245,9 @@ html[data-mc-contraste="true"]
 }
 
 
+
+/* Las tomas solo se presentan dentro del módulo Medicamentos. */
+.med-tomas-panel { max-width: 1150px; margin: 26px auto 0; padding: 24px; background: #fff; border: 1px solid #d9e5d3; border-radius: 18px; }
+.med-contenedor .med-buscador input[type="search"] { border: none !important; box-shadow: none !important; outline: 0 !important; background: transparent; }
+.med-contenedor .med-buscador { overflow: hidden; }
+@media (max-width: 700px) { .med-tomas-panel { padding: 14px; } }
