@@ -253,3 +253,189 @@ html[data-mc-contraste="true"] .med-badge {
   color: #000000 !important;
   border: 2px solid #000000;
 }
+
+/* Corrige el nombre MEDICONTROL en alto contraste */
+html[data-mc-contraste="true"] .med-encabezado .med-badge {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
+}
+
+/* Mantiene legible el texto del botón de accesibilidad */
+html[data-mc-contraste="true"] .med-encabezado
+.mc-accesibilidad-boton {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
+}
+
+/* Reduce el grosor visual de las tarjetas */
+html[data-mc-contraste="true"] .med-panel,
+html[data-mc-contraste="true"] .med-tarjeta,
+html[data-mc-contraste="true"] .med-resumen-card {
+  border: 1px solid #000000 !important;
+  border-radius: 12px;
+}
+
+/* Mantiene títulos grandes pero proporcionados */
+html[data-mc-contraste="true"] .med-panel h2 {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+/* Evita textos excesivamente gruesos */
+html[data-mc-contraste="true"] .med-contenedor p,
+html[data-mc-contraste="true"] .med-contenedor dd {
+  font-weight: 400;
+}
+
+html[data-mc-contraste="true"] :is(
+  .med-resumen-card:first-child,
+  .med-resumen-destacado,
+  .med-contador,
+  .med-frecuencia-pill,
+  .med-detalle
+) {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #000000 !important;
+}
+
+html[data-mc-contraste="true"] .med-buscador {
+  background: #ffffff !important;
+  border: 2px solid #000000 !important;
+  box-shadow: none !important;
+}
+
+html[data-mc-contraste="true"] .med-buscador input {
+  background: transparent !important;
+  color: #000000 !important;
+
+  border: none !important;
+  box-shadow: none !important;
+}
+
+html[data-mc-contraste="true"] .mc-accesibilidad-boton {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
+}
+
+
+/*
+ * AJUSTES FINALES DEL MODO BLANCO Y NEGRO
+ *
+ * Estas reglas se aplican únicamente cuando
+ * el usuario activa el alto contraste.
+ *
+ * El atributo data-mc-contraste es controlado
+ * desde ModoAccesible.jsx.
+ */
+
+/*
+ * TARJETAS Y ETIQUETAS
+ *
+ * Sustituye los fondos verdes por blanco,
+ * conservando bordes negros para distinguirlos.
+ */
+html[data-mc-contraste="true"] :is(
+  .med-resumen-card:first-child,
+  .med-resumen-destacado,
+  .med-contador,
+  .med-frecuencia-pill,
+  .med-detalle
+) {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #000000 !important;
+}
+
+/*
+ * TEXTO DE LOS ELEMENTOS
+ *
+ * Evita que las etiquetas mantengan letras verdes.
+ */
+html[data-mc-contraste="true"] :is(
+  .med-contador,
+  .med-frecuencia-pill
+) {
+  color: #000000 !important;
+}
+
+/*
+ * BUSCADOR
+ *
+ * El contenedor tendrá un solo borde negro.
+ */
+html[data-mc-contraste="true"] .med-buscador {
+  background: #ffffff !important;
+  border: 2px solid #000000 !important;
+  box-shadow: none !important;
+}
+
+/*
+ * CAMPO INTERIOR DEL BUSCADOR
+ *
+ * Se elimina el segundo borde para evitar
+ * que aparezcan dos rectángulos.
+ */
+html[data-mc-contraste="true"] .med-buscador input {
+  background: transparent !important;
+  color: #000000 !important;
+
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/*
+ * BOTÓN DE ACCESIBILIDAD
+ *
+ * Fondo blanco y letras negras cuando
+ * se utiliza el modo de alto contraste.
+ */
+html[data-mc-contraste="true"] .mc-accesibilidad-boton {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
+}
+
+/*
+ * BOTÓN RESTABLECER
+ *
+ * También utiliza colores blanco y negro.
+ */
+html[data-mc-contraste="true"] .mc-accesibilidad-restablecer {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+}
+
+/*
+ * DISTINTIVO MEDICONTROL
+ *
+ * Debe conservar letras negras sobre fondo blanco
+ * para evitar que el nombre desaparezca.
+ */
+html[data-mc-contraste="true"] .med-encabezado .med-badge {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
+}
+
+/*
+ * CONTENIDO DEL PANEL DE ACCESIBILIDAD
+ *
+ * Garantiza que los textos sean legibles cuando
+ * el usuario activa el modo blanco y negro.
+ */
+html[data-mc-contraste="true"] .mc-accesibilidad-panel {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+}
+
+html[data-mc-contraste="true"] .mc-accesibilidad-panel :is(
+  h2, p, strong, small, span
+) {
+  color: #000000 !important;
+}

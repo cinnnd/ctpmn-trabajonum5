@@ -165,24 +165,25 @@ function Medicamentos() {
 
       {/* TARJETAS DE RESUMEN */}
       <section className="med-resumen" aria-label="Resumen de medicamentos">
-        <div className="med-resumen-card">
-          <span>Medicamentos</span>
+        {/*contiene la cantidad total de registros guardados*/}
+        <div className="med-resumen-card med-resumen-destacado">
+          <span>Total de medicamentos</span>
           <strong>{resumen.total}</strong>
-          <small>Total registrados</small>
+          <small>Tratamientos registrados</small>
         </div>
-
+        {/*cuenta cuantos medicamentos fueron configurados con frecuencia de 8 horas*/}
         <div className="med-resumen-card">
           <span>◷ Cada 8 horas</span>
           <strong>{resumen.cada8}</strong>
           <small>Medicamentos</small>
         </div>
-
+        {/*muestra los medicamentos con frecuencia de 12 horas*/}
         <div className="med-resumen-card">
           <span>◷ Cada 12 horas</span>
           <strong>{resumen.cada12}</strong>
           <small>Medicamentos</small>
         </div>
-
+        {/*muestra los medicamentos cuya frecuencia son de 24horas*/}
         <div className="med-resumen-card">
           <span>◷ Cada 24 horas</span>
           <strong>{resumen.cada24}</strong>

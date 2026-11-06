@@ -1,72 +1,76 @@
 
-/*Permite a personas adultas mayores, aumenta el tamaño del texto, activar colores y restablecer el diseño.*/
+/*modo accesible. permite personalizar la interfaz para adultos mayores, activa las letras grandes, activa el modo blanco y negro, guarda las preferencias en el local storage*/
 
 import { useEffect, useState } from "react";
 import "../styles/modoAccesible.css";
 
-// Identificador utilizado para guardar la configuración.
-const CLAVE = "medicontrol_accesibilidad";
-
-// Configuración normal de la aplicación.
-const configuracionInicial = {
-  letraGrande: false,
+// Configuración predeterminada de la aplicación.
+// false significa que la opción está desactivada.
+const estadoInicial = {
+  textoGrande: false,
   altoContraste: false,
 };
 
-// Recupera las preferencias guardadas en el navegador.
+/*recupera las preferencias ya guardadas.*/
 function obtenerConfiguracion() {
   try {
-    const datos = localStorage.getItem(CLAVE);
+    const guardado = localStorage.getItem("mc-accesibilidad");
 
-    if (!datos) {
-      return { ...configuracionInicial };
+    if (!guardado) {
+      return { ...estadoInicial };
     }
 
-    const configuracion = JSON.parse(datos);
+    const configuracion = JSON.parse(guardado);
 
     return {
-      letraGrande: configuracion?.letraGrande === true,
-      altoContraste: configuracion?.altoContraste === true,
+      textoGrande: configuracion.textoGrande === true,
+      altoContraste: configuracion.altoContraste === true,
     };
   } catch (error) {
     console.error("Error al cargar accesibilidad:", error);
-    return { ...configuracionInicial };
+    return { ...estadoInicial };
   }
 }
 
+/*aplica la configuracion al documento HTML. los tributos data-mc-* permite activar reglas css dependiendo de las opciones*/
+function aplicarConfiguracion(configuracion) {
+  const raiz = document.documentElement;
+
+  raiz.setAttribute(
+    "data-mc-texto-grande",
+    configuracion.textoGrande ? "true" : "false"
+  );
+
+  raiz.setAttribute(
+    "data-mc-contraste",
+    configuracion.altoContraste ? "true" : "false"
+  );
+}
+
 function ModoAccesible() {
-  // Controla si el panel está abierto o cerrado.
+  /*useState controla si el menú de accesibilidad está abierto o cerrado.*/
   const [abierto, setAbierto] = useState(false);
 
-  // Guarda las opciones seleccionadas.
+  /* Guarda las preferencias del usuario.*/
   const [configuracion, setConfiguracion] = useState(
     obtenerConfiguracion
   );
 
-  /*Aplica las preferencias a la pagina, los archivos data permiten que el css identifique cuando esta activado el modo accesible,*/
+  /*useeffect se ejecuta cuando cambia la configuracion. aplica los estilos y la preferencia*/
   useEffect(() => {
-    const raiz = document.documentElement;
+    aplicarConfiguracion(configuracion);
 
-    raiz.dataset.mcTextoGrande = String(
-      configuracion.letraGrande
-    );
-
-    raiz.dataset.mcContraste = String(
-      configuracion.altoContraste
-    );
-
-    // Guarda las preferencias al modificarlas.
     try {
       localStorage.setItem(
-        CLAVE,
+        "mc-accesibilidad",
         JSON.stringify(configuracion)
       );
     } catch (error) {
-      console.error("Error al guardar preferencias:", error);
+      console.error("Error al guardar accesibilidad:", error);
     }
   }, [configuracion]);
 
-  // Cambia únicamente la opción seleccionada.
+  /*cambiar opcion. recibe el nombre de la opcion que se quiere modificar. invierte su valor: false -> true       true->false*/
   const cambiarOpcion = (opcion) => {
     setConfiguracion((anterior) => ({
       ...anterior,
@@ -74,14 +78,18 @@ function ModoAccesible() {
     }));
   };
 
-  // Regresa al tamaño y colores normales.
+  /*restablecer. descativa las opciones para regresar al tema original*/
   const restablecer = () => {
-    setConfiguracion({ ...configuracionInicial });
+    setConfiguracion({ ...estadoInicial });
   };
+
+  // Comprueba si existe alguna opción activada.
+  const hayAccesibilidadActiva =
+    configuracion.textoGrande || configuracion.altoContraste;
 
   return (
     <div className="mc-accesibilidad">
-      {/* Botón principal */}
+      {/* Botón para abrir las opciones de accesibilidad */}
       <button
         type="button"
         className="mc-accesibilidad-boton"
@@ -89,11 +97,18 @@ function ModoAccesible() {
         aria-expanded={abierto}
         aria-controls="mc-panel-accesibilidad"
       >
-        Accesibilidad
-        <span aria-hidden="true">{abierto ? "−" : "+"}</span>
+        <span>Accesibilidad</span>
+
+        {/* 
+          + : no hay opciones activas y el panel está cerrado.
+          - : el panel está abierto o hay accesibilidad activa.
+        */}
+        <strong>
+          {abierto || hayAccesibilidadActiva ? "−" : "+"}
+        </strong>
       </button>
 
-      {/* Panel que aparece al presionar el botón */}
+      {/* El panel solo se muestra cuando abierto es true */}
       {abierto && (
         <section
           id="mc-panel-accesibilidad"
@@ -103,29 +118,33 @@ function ModoAccesible() {
           <h2>Opciones de accesibilidad</h2>
 
           <p>
-            Personalice la pantalla para leer con mayor
-            comodidad.
+            Ajuste la visualización para leer
+            con mayor comodidad.
           </p>
 
-          {/* Opción para aumentar las letras */}
+          {/* OPCIÓN 1: AUMENTAR LETRAS */}
           <label className="mc-accesibilidad-opcion">
             <span>
               <strong>Texto grande</strong>
-              <small>Aumenta el tamaño de las letras.</small>
+              <small>
+                Aumentar el tamaño de las letras.
+              </small>
             </span>
 
             <input
               type="checkbox"
-              checked={configuracion.letraGrande}
-              onChange={() => cambiarOpcion("letraGrande")}
+              checked={configuracion.textoGrande}
+              onChange={() => cambiarOpcion("textoGrande")}
             />
           </label>
 
-          {/* Opción para cambiar a blanco y negro */}
+          {/* OPCIÓN 2: BLANCO Y NEGRO */}
           <label className="mc-accesibilidad-opcion">
             <span>
-              <strong>Alto contraste</strong>
-              <small>Activa el modo blanco y negro.</small>
+              <strong>Blanco y negro</strong>
+              <small>
+                Utilizar colores de alto contraste.
+              </small>
             </span>
 
             <input
@@ -135,7 +154,7 @@ function ModoAccesible() {
             />
           </label>
 
-          {/* Botón para recuperar el diseño original */}
+          {/* Botón para volver al diseño normal */}
           <button
             type="button"
             className="mc-accesibilidad-restablecer"
