@@ -651,3 +651,597 @@ body:has(.med-contenedor) {
     font-size: 23px;
   }
 }
+
+/* Encabezado principal */
+.med-encabezado {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+
+  min-height: 150px;
+  padding: 30px 36px;
+
+  background: #B9D6A5;
+  border-radius: 18px;
+  overflow: visible;
+}
+
+/* Texto a la izquierda */
+.med-encabezado-principal {
+  flex: 1 1 380px;
+  min-width: 0;
+  max-width: 760px;
+}
+
+/* Identificador superior de MediControl */
+.med-badge {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 7px 13px;
+
+  background: #F4F8EE;
+  color: #304432;
+  border-radius: 20px;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Título de la página */
+.med-encabezado h1 {
+  margin: 0 0 10px;
+  color: #243A2D;
+  font-size: clamp(30px, 4vw, 43px);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* Descripción */
+.med-encabezado p {
+  margin: 0;
+  color: #38503C;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Botón de accesibilidad a la derecha */
+.med-encabezado-lateral {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex: 0 0 auto;
+  align-self: flex-start;
+}
+
+/* Fondo uniforme para las tarjetas de resumen */
+.med-resumen-card {
+  border-top: 3px solid #9CC69B;
+}
+
+/* Diferenciamos las frecuencias con la misma paleta */
+.med-resumen-card:nth-child(1) {
+  background: #D7F2BA;
+  border-top-color: #676F54;
+}
+
+.med-resumen-card:nth-child(2) {
+  border-top-color: #79B4A9;
+}
+
+.med-resumen-card:nth-child(3) {
+  border-top-color: #9CC69B;
+}
+
+.med-resumen-card:nth-child(4) {
+  border-top-color: #676F54;
+}
+
+/* Se corrige el borde del aviso informativo */
+.med-aviso {
+  border-left-color: #676F54;
+}
+
+/* Diseño adaptable a tabletas */
+@media (max-width: 900px) {
+  .med-encabezado {
+    align-items: flex-start;
+    padding: 26px;
+  }
+
+  .med-encabezado-lateral {
+    justify-content: flex-start;
+  }
+}
+
+/* Diseño adaptable a celulares */
+@media (max-width: 560px) {
+  .med-encabezado {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 22px 18px;
+  }
+
+  .med-encabezado-principal {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .med-encabezado-lateral {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .med-encabezado h1 {
+    font-size: 30px;
+  }
+}
+
+/* Evita los bordes duplicados del buscador */
+.med-buscador {
+  display: flex;
+  align-items: center;
+  border: 1px solid #c8d7c3;
+  border-radius: 9px;
+  overflow: hidden;
+}
+
+.med-buscador input {
+  width: 100%;
+  border: none !important;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Ajuste específico en alto contraste */
+html[data-mc-contraste="true"] .med-buscador {
+  border: 2px solid #000000 !important;
+}
+
+html[data-mc-contraste="true"] .med-buscador input {
+  border: none !important;
+  outline: none !important;
+}
+
+
+/*buscador de medicamentos. el conteendor agrupa el campo de busqeuda y evita que aparezcan bordes duplicados. */
+.med-buscador {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  /* Altura mínima para facilitar su uso */
+  min-height: 54px;
+
+  /* Espacio interior */
+  padding: 0 14px;
+
+  /* Apariencia del contenedor */
+  background: #ffffff;
+  border: 1px solid #c9dac0;
+  border-radius: 12px;
+
+  /* Evita que el contenido sobresalga */
+  overflow: hidden;
+}
+
+/*focus. cuando el usuario selecciona el buscador, se muestra un borde verde para identificarlo.*/
+.med-buscador:focus-within {
+  border-color: #79b4a9;
+  box-shadow: 0 0 0 3px rgba(121, 180, 169, 0.18);
+}
+
+/* Icono o símbolo de búsqueda */
+.med-buscador span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c7e67;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/*campos de búsqueda, no utilizamos un segundo borde porque el contenedor ya tiene uno*/
+.med-buscador input {
+  width: 100%;
+  min-width: 0;
+  padding: 14px 0;
+
+  background: transparent;
+  border: none !important;
+  outline: none;
+  box-shadow: none !important;
+
+  color: #304432;
+  font: inherit;
+  font-size: 16px;
+
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/*oculta algunas decoraciones predeterminadas que chrome puede mostrar en campos de búsqueda*/
+.med-buscador input::-webkit-search-decoration,
+.med-buscador input::-webkit-search-cancel-button,
+.med-buscador input::-webkit-search-results-button,
+.med-buscador input::-webkit-search-results-decoration {
+  display: none;
+  -webkit-appearance: none;
+}
+
+
+/* Cada medicamento aparece en una tarjeta separada.El borde izquierdo facilita distinguir los registros.*/
+.med-tarjeta {
+  padding: 24px;
+  background: #ffffff;
+
+  border: 1px solid #dce7d7;
+  border-left: 4px solid #79b4a9;
+  border-radius: 16px;
+
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Efecto visual cuando el cursor pasa por la tarjeta */
+.med-tarjeta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(65, 87, 60, 0.08);
+}
+
+/*Coloca el nombre a la izquierda
+ * y la frecuencia a la derecha.
+ */
+.med-tarjeta-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+/* Texto pequeño sobre el nombre */
+.med-tarjeta-etiqueta {
+  display: inline-block;
+  margin-bottom: 6px;
+
+  color: #687764;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Nombre principal del medicamento */
+.med-tarjeta h3 {
+  margin: 0;
+
+  color: #304432;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+
+  /* Evita que nombres largos desborden la tarjeta */
+  overflow-wrap: anywhere;
+}
+
+/*Destaca cada cuántas horas se administra
+ * el medicamento.
+ */
+.med-frecuencia-pill {
+  flex-shrink: 0;
+  padding: 8px 12px;
+
+  background: #eef5e8;
+  border: 1px solid #cfe0c6;
+  border-radius: 999px;
+
+  color: #39523a;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/*Grid permite mostrar dosis, frecuencia
+ * y hora de inicio en tres columnas.
+ */
+.med-detalles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0 0 16px;
+}
+
+/* Contenedor de cada dato */
+.med-detalle {
+  min-width: 0;
+  padding: 14px;
+
+  background: #f7faf5;
+  border: 1px solid #dce7d7;
+  border-radius: 12px;
+}
+
+/* Nombre del dato: Dosis, Frecuencia u Hora */
+.med-detalle dt {
+  margin-bottom: 6px;
+  color: #687764;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Valor correspondiente al dato */
+.med-detalle dd {
+  margin: 0;
+  color: #304432;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+
+  overflow-wrap: anywhere;
+}
+
+/* Texto de orientación de la tarjeta */
+.med-tarjeta-ayuda {
+  margin: 0 0 16px;
+  color: #62725f;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Línea que separa los datos de los botones */
+.med-tarjeta-acciones {
+  padding-top: 14px;
+  border-top: 1px solid #dce7d7;
+}
+
+/* En pantallas pequeñas mostramos los datos
+ ** en una sola columna para facilitar la lectura.
+ */
+@media (max-width: 900px) {
+  .med-detalles {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Cada medicamento aparece en una tarjeta separada.
+ ** El borde izquierdo facilita distinguir los registros.
+ */
+.med-tarjeta {
+  padding: 24px;
+  background: #ffffff;
+
+  border: 1px solid #dce7d7;
+  border-left: 4px solid #79b4a9;
+  border-radius: 16px;
+
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Efecto visual cuando el cursor pasa por la tarjeta */
+.med-tarjeta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(65, 87, 60, 0.08);
+}
+
+/*Coloca el nombre a la izquierda
+ * y la frecuencia a la derecha.
+ */
+.med-tarjeta-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+/* Texto pequeño sobre el nombre */
+.med-tarjeta-etiqueta {
+  display: inline-block;
+  margin-bottom: 6px;
+
+  color: #687764;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Nombre principal del medicamento */
+.med-tarjeta h3 {
+  margin: 0;
+
+  color: #304432;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+
+  /* Evita que nombres largos desborden la tarjeta */
+  overflow-wrap: anywhere;
+}
+
+/*Destaca cada cuántas horas se administra
+ * el medicamento.
+ */
+.med-frecuencia-pill {
+  flex-shrink: 0;
+  padding: 8px 12px;
+
+  background: #eef5e8;
+  border: 1px solid #cfe0c6;
+  border-radius: 999px;
+
+  color: #39523a;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/* Grid permite mostrar dosis, frecuencia
+ ** y hora de inicio en tres columnas.
+ */
+.med-detalles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0 0 16px;
+}
+
+/* Contenedor de cada dato */
+.med-detalle {
+  min-width: 0;
+  padding: 14px;
+
+  background: #f7faf5;
+  border: 1px solid #dce7d7;
+  border-radius: 12px;
+}
+
+/* Nombre del dato: Dosis, Frecuencia u Hora */
+.med-detalle dt {
+  margin-bottom: 6px;
+  color: #687764;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Valor correspondiente al dato */
+.med-detalle dd {
+  margin: 0;
+  color: #304432;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+
+  overflow-wrap: anywhere;
+}
+
+/* Texto de orientación de la tarjeta */
+.med-tarjeta-ayuda {
+  margin: 0 0 16px;
+  color: #62725f;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Línea que separa los datos de los botones */
+.med-tarjeta-acciones {
+  padding-top: 14px;
+  border-top: 1px solid #dce7d7;
+}
+
+/*En pantallas pequeñas mostramos los datos
+ * en una sola columna para facilitar la lectura.
+ */
+@media (max-width: 900px) {
+  .med-detalles {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* La primera tarjeta muestra la cantidad total
+ ** de tratamientos registrados.
+ ** Se utiliza un verde suave para destacarla.
+ */
+.med-resumen-destacado {
+  background: #cfe0c6;
+  border-color: #bfd5b4;
+}
+
+/* Indica cuántos medicamentos existen
+ ** sin necesidad de contarlos manualmente.
+ */
+.med-contador {
+  padding: 10px 16px;
+
+  background: #eef5e8;
+  border: 1px solid #cfe0c6;
+  border-radius: 999px;
+
+  color: #39523a;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+
+/* ==========================================
+   CORRECCIÓN DEL BUSCADOR
+   ========================================== */
+
+/* Un solo borde para todo el buscador */
+.med-contenedor .med-buscador {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 52px;
+  padding: 0 14px;
+  background: #ffffff;
+  border: 1px solid #c9dac0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Icono sin borde independiente */
+.med-contenedor .med-buscador > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: #53664b;
+  font-size: 20px;
+}
+
+/* Quitamos completamente el borde interior */
+.med-contenedor .med-buscador input,
+.med-contenedor .med-buscador input[type="search"] {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  margin: 0;
+  padding: 10px 0;
+  background: transparent;
+  border: 0 !important;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none !important;
+  font-size: 16px;
+  color: #304432;
+}
+
+/* Borde destacado al escribir */
+.med-contenedor .med-buscador:focus-within {
+  border-color: #79b4a9;
+  box-shadow: 0 0 0 3px rgba(121, 180, 169, 0.2);
+}
+
+/* Buscador en blanco y negro */
+html[data-mc-contraste="true"]
+.med-contenedor .med-buscador {
+  background: #ffffff !important;
+  border: 2px solid #000000 !important;
+}
+
+html[data-mc-contraste="true"]
+.med-contenedor .med-buscador input {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: #000000 !important;
+}
+
+

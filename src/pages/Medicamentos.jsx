@@ -2,7 +2,7 @@
 /*medicontrol, es la pagina principal. coordina el formulario de registro y edicion, la lista de medicamentos, el localstorage, las operaciones CRUD, los mensajes de error y confirmación.*/
 
 import { useState } from "react";
-
+import ModoAccesible from "../components/ModoAccesible";
 import FormularioMedicamento from "../components/FormularioMedicamento";
 import ListaMedicamentos from "../components/ListaMedicamentos";
 
@@ -139,20 +139,19 @@ function Medicamentos() {
 
   return (
     <main className="med-contenedor">
-      {/* ENCABEZADO PRINCIPAL */}
-        <header className="med-encabezado">
-            <div className="med-encabezado-texto">
-                <span className="med-etiqueta">MEDICONTROL</span>
+      <header className="med-encabezado">
+        <div className="med-encabezado-principal">
+          <span className="med-badge">MEDICONTROL</span>
+          <h1>Gestión de medicamentos</h1>
+          <p>
+            Un espacio sencillo para organizar sus medicamentos y consultar sus horarios.
+          </p>
+        </div>
 
-                <h1>Gestión de medicamentos</h1>
-
-                <p>
-                Un espacio sencillo para organizar sus medicamentos y consultar sus horarios.
-                </p>
-            </div>
-
-            <div className="med-ilustracion" aria-hidden="true"></div>
-        </header>
+        <div className="med-encabezado-lateral">
+          <ModoAccesible />
+        </div>
+      </header>
 
       {/* AVISO OBLIGATORIO DEL PROYECTO */}
       <aside className="med-aviso" role="note">
@@ -166,24 +165,25 @@ function Medicamentos() {
 
       {/* TARJETAS DE RESUMEN */}
       <section className="med-resumen" aria-label="Resumen de medicamentos">
-        <div className="med-resumen-card">
-          <span>Medicamentos</span>
+        {/*contiene la cantidad total de registros guardados*/}
+        <div className="med-resumen-card med-resumen-destacado">
+          <span>Total de medicamentos</span>
           <strong>{resumen.total}</strong>
-          <small>Total registrados</small>
+          <small>Tratamientos registrados</small>
         </div>
-
+        {/*cuenta cuantos medicamentos fueron configurados con frecuencia de 8 horas*/}
         <div className="med-resumen-card">
           <span>◷ Cada 8 horas</span>
           <strong>{resumen.cada8}</strong>
           <small>Medicamentos</small>
         </div>
-
+        {/*muestra los medicamentos con frecuencia de 12 horas*/}
         <div className="med-resumen-card">
           <span>◷ Cada 12 horas</span>
           <strong>{resumen.cada12}</strong>
           <small>Medicamentos</small>
         </div>
-
+        {/*muestra los medicamentos cuya frecuencia son de 24horas*/}
         <div className="med-resumen-card">
           <span>◷ Cada 24 horas</span>
           <strong>{resumen.cada24}</strong>
