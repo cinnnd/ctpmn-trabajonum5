@@ -38,7 +38,7 @@ export default function Historial() {
             <div className="tarjeta-grande">
                 <h2>Registros del historial</h2>
                 <p>Aquí aparecerá el historial de tomas de medicamentos y citas completadas.</p>
-                <p className="texto-placeholder">📋 Próximamente: Integración con el módulo de medicamentos de su compañera.</p>
+                <p className="texto-placeholder">Próximamente: Integración con el módulo de medicamentos de su compañera.</p>
             </div>
             </div>
         </div>
