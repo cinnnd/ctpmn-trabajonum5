@@ -439,3 +439,89 @@ html[data-mc-contraste="true"] .mc-accesibilidad-panel :is(
 ) {
   color: #000000 !important;
 }
+
+
+
+/* ==========================================
+   CORRECCIÓN DEL PANEL DE ACCESIBILIDAD
+   ========================================== */
+
+/* Mantiene el panel flotante sin mover el formulario */
+.mc-accesibilidad {
+  position: relative;
+  margin: 0;
+  z-index: 100;
+}
+
+.mc-accesibilidad-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 101;
+  width: min(350px, calc(100vw - 32px));
+  background: #ffffff;
+  color: #304432;
+}
+
+/* Corrige el título invisible del panel */
+.mc-accesibilidad-panel h2,
+.mc-accesibilidad-panel p,
+.mc-accesibilidad-panel strong,
+.mc-accesibilidad-panel small {
+  color: #304432;
+}
+
+/* Corrige el botón de accesibilidad */
+.mc-accesibilidad-boton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 170px;
+  min-height: 48px;
+}
+
+/* El signo + o - permanece visible */
+.mc-accesibilidad-boton > strong {
+  display: inline-block;
+  color: inherit !important;
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* ==========================================
+   CORRECCIONES EN ALTO CONTRASTE
+   ========================================== */
+
+/* Texto blanco sobre fondo negro del encabezado */
+html[data-mc-contraste="true"] .med-encabezado h1,
+html[data-mc-contraste="true"] .med-encabezado p {
+  color: #ffffff !important;
+}
+
+/* Distintivo blanco con letras negras */
+html[data-mc-contraste="true"] .med-encabezado .med-badge {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Botón blanco con texto negro */
+html[data-mc-contraste="true"] .mc-accesibilidad-boton,
+html[data-mc-contraste="true"] .mc-accesibilidad-boton > span,
+html[data-mc-contraste="true"] .mc-accesibilidad-boton > strong {
+  color: #000000 !important;
+}
+
+/* Título y opciones del panel siempre legibles */
+html[data-mc-contraste="true"] .mc-accesibilidad-panel,
+html[data-mc-contraste="true"] .mc-accesibilidad-panel :is(
+  h2, p, strong, small, span
+) {
+  background-color: #ffffff;
+  color: #000000 !important;
+}
+
+/* Evita el blanco sobre blanco cuando el modo está activo */
+html[data-mc-contraste="true"] .mc-accesibilidad-panel h2 {
+  color: #000000 !important;
+}

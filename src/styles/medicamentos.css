@@ -1177,4 +1177,71 @@ html[data-mc-contraste="true"] .med-buscador input {
 }
 
 
+/* ==========================================
+   CORRECCIÓN DEL BUSCADOR
+   ========================================== */
+
+/* Un solo borde para todo el buscador */
+.med-contenedor .med-buscador {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 52px;
+  padding: 0 14px;
+  background: #ffffff;
+  border: 1px solid #c9dac0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Icono sin borde independiente */
+.med-contenedor .med-buscador > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: #53664b;
+  font-size: 20px;
+}
+
+/* Quitamos completamente el borde interior */
+.med-contenedor .med-buscador input,
+.med-contenedor .med-buscador input[type="search"] {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  margin: 0;
+  padding: 10px 0;
+  background: transparent;
+  border: 0 !important;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none !important;
+  font-size: 16px;
+  color: #304432;
+}
+
+/* Borde destacado al escribir */
+.med-contenedor .med-buscador:focus-within {
+  border-color: #79b4a9;
+  box-shadow: 0 0 0 3px rgba(121, 180, 169, 0.2);
+}
+
+/* Buscador en blanco y negro */
+html[data-mc-contraste="true"]
+.med-contenedor .med-buscador {
+  background: #ffffff !important;
+  border: 2px solid #000000 !important;
+}
+
+html[data-mc-contraste="true"]
+.med-contenedor .med-buscador input {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: #000000 !important;
+}
+
 
