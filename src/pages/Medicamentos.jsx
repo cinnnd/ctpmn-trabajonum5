@@ -2,9 +2,9 @@
 /*medicontrol, es la pagina principal. coordina el formulario de registro y edicion, la lista de medicamentos, el localstorage, las operaciones CRUD, los mensajes de error y confirmación.*/
 
 import { useState } from "react";
-import ModoAccesible from "../components/ModoAccesible";
 import FormularioMedicamento from "../components/FormularioMedicamento";
 import ListaMedicamentos from "../components/ListaMedicamentos";
+import VistaHoy from "../components/visitahoy.jsx";
 
 import {
   obtenerMedicamentos,
@@ -148,9 +148,6 @@ function Medicamentos() {
           </p>
         </div>
 
-        <div className="med-encabezado-lateral">
-          <ModoAccesible />
-        </div>
       </header>
 
       {/* AVISO OBLIGATORIO DEL PROYECTO */}
@@ -218,6 +215,11 @@ function Medicamentos() {
           onEliminar={eliminar}
         />
       </div>
+
+      {/* Las tomas se consultan solo dentro de Medicamentos. */}
+      <section className="med-tomas-panel" aria-label="Control de tomas de hoy">
+        <VistaHoy medicamentos={medicamentos} />
+      </section>
     </main>
   );
 }

@@ -21,7 +21,7 @@ export default function AgendaCitas({ citas, onEliminarCita, onCompletarCita }) 
     // Función para formatear fecha
     const formatearFecha = (fechaStr) => {
         const opciones = { year: 'numeric', month: 'long', day: 'numeric' }
-        return new Date(fechaStr).toLocaleDateString('es-ES', opciones)
+        return new Date(`${fechaStr}T12:00:00`).toLocaleDateString('es-ES', opciones)
     }
 
     return (
