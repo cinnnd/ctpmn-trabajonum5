@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useState, useEffect } from 'react'          //el useState, useEffect es para activar o desactivar la clase en body
+import { useState, useEffect } from 'react'   //el useState, useEffect es para activar o desactivar la clase en body
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Inicio from './pages/Inicio'
@@ -9,30 +9,42 @@ import Historial from './pages/Historial'
 import './index.css'
 
 function App() {
-  // Estado para saber si el modo accesible está activo
-  const [modoAccesible, setModoAccesible] = useState(false)
+  const [textoGrande, setTextoGrande] = useState(false)   //letras grandes para el modo accesible 
+  const [altoContraste, setAltoContraste] = useState(false)  ///contraste alto para el modo accesible 
 
-  // Efecto: Cada vez que cambie 'modoAccesible', agregamos o quitamos la clase al body
   useEffect(() => {
-    if (modoAccesible) {
-      document.body.classList.add('modo-accesible')
+    const body = document.body
+    
+    if (textoGrande) {
+      body.classList.add('texto-grande')
     } else {
-      document.body.classList.remove('modo-accesible')
+      body.classList.remove('texto-grande')
     }
-  }, [modoAccesible])
 
-  // Función para cambiar el estado
-  const toggleModoAccesible = () => {
-    setModoAccesible(!modoAccesible)
+    if (altoContraste) {
+      body.classList.add('alto-contraste')
+    } else {
+      body.classList.remove('alto-contraste')
+    }
+  }, [textoGrande, altoContraste])
+
+  const toggleTextoGrande = () => setTextoGrande(!textoGrande)
+  const toggleAltoContraste = () => setAltoContraste(!altoContraste)
+  
+  const restablecer = () => {
+    setTextoGrande(false)
+    setAltoContraste(false)
   }
 
   return (
     <BrowserRouter>
       <div className="app-layout">
-        {/* eso hace que el boton aparesca y funcione en el navbar */}
         <Navbar 
-          modoAccesible={modoAccesible} 
-          onToggleAccesible={toggleModoAccesible} 
+          textoGrande={textoGrande}
+          altoContraste={altoContraste}
+          onToggleTexto={toggleTextoGrande}
+          onToggleContraste={toggleAltoContraste}
+          onRestablecer={restablecer}
         />
         <main className="contenido-principal">
           <Routes>

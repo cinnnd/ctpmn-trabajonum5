@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
-import ModoAccesible from './ModoAccesible' // esto es lo del boton de modo accesible
+import ModoAccesible from './ModoAccesible'
 
-export default function Navbar({ modoAccesible, onToggleAccesible }) {
+export default function Navbar({ textoGrande, altoContraste, onToggleTexto, onToggleContraste, onRestablecer }) {
     const location = useLocation()
 
     return (
@@ -12,10 +12,12 @@ export default function Navbar({ modoAccesible, onToggleAccesible }) {
             <p className="navbar-subtitulo">Recordatorio de medicamentos y citas</p>
             </div>
             
-            {/*  el botón de modo accesible */}
             <ModoAccesible 
-            activo={modoAccesible} 
-            onToggle={onToggleAccesible} 
+            textoGrande={textoGrande}
+            altoContraste={altoContraste}
+            onToggleTexto={onToggleTexto}
+            onToggleContraste={onToggleContraste}
+            onRestablecer={onRestablecer}
             />
         </div>
 
@@ -25,19 +27,16 @@ export default function Navbar({ modoAccesible, onToggleAccesible }) {
                 Inicio
             </Link>
             </li>
-
             <li>
             <Link to="/medicamentos" className={location.pathname === '/medicamentos' ? 'activo' : ''}>
                 Medicamentos
             </Link>
             </li>
-
             <li>
             <Link to="/citas" className={location.pathname === '/citas' ? 'activo' : ''}>
                 Citas
             </Link>
             </li>
-
             <li>
             <Link to="/historial" className={location.pathname === '/historial' ? 'activo' : ''}>
                 Historial
